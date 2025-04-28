@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الالتحاق بمنصة البدري التعليمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --light-blue: #e1f5fe;
+            --dark-blue: #2980b9;
+            --text-color: #2c3e50;
+            --light-gray: #f5f7fa;
+            --border-color: #dfe6e9;
+            --error-color: #e74c3c;
+            --success-color: #2ecc71;
+            --box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.7;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e1f5fe 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-weight: 300;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header i {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: block;
+            color: rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-content {
+            padding: 30px;
+        }
+        
+        .required-note {
+            color: var(--error-color);
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .required-note i {
+            margin-left: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .form-group:focus-within {
+            transform: translateY(-2px);
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-group label i {
+            margin-left: 10px;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+        
+        .form-group label .required {
+            color: var(--error-color);
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Rubik', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: var(--light-gray);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            background-color: white;
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+            padding-right: 40px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, var(--primary-color), var(--dark-blue));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Rubik', sans-serif;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn i {
+            margin-left: 8px;
+        }
+        
+        .btn-reset {
+            background: linear-gradient(to right, #95a5a6, #7f8c8d);
+            margin-left: 15px;
+        }
+        
+        .btn-reset:hover {
+            background: linear-gradient(to right, #7f8c8d, #95a5a6);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .form-actions {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .success-message {
+            display: none;
+            background-color: var(--success-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        .success-message i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .btn-reset {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-graduation-cap"></i>
+            <h1>الالتحاق بمنصة البدري التعليمية</h1>
+            <p>نحو تعليم مميز في اللغة العربية</p>
+        </div>
+        
+        <div class="form-content">
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <h3>تم التسجيل بنجاح!</h3>
+                <p>شكراً لتسجيلك في منصة البدري التعليمية</p>
+            </div>
+            
+            <p class="required-note">
+                <i class="fas fa-exclamation-circle"></i>
+                * تشير إلى أن السؤال مطلوب
+            </p>
+            
+            <form id="customForm" action="https://docs.google.com/forms/d/e/1FAIpQLScvqPYm_k8Bgu61anscfgbehs0LnzzleZEQ9jXP_5SUT8HzXg/formResponse" method="POST" target="_self">
+                <!-- الاسم بالكامل -->
+                <div class="form-group">
+                    <label for="fullName">
+                        <span class="required">*</span>
+                        الاسم كامل "باللغة العربية"
+                        <i class="fas fa-user"></i>
+                    </label>
+                    <input type="text" id="fullName" name="entry.1460379693" class="form-control" required placeholder="أدخل اسمك الثلاثي">
+                </div>
+                
+                <!-- الصف الدراسي -->
+                <div class="form-group">
+                    <label for="grade">
+                        <span class="required">*</span>
+                        الصف الدراسي
+                        <i class="fas fa-graduation-cap"></i>
+                    </label>
+                    <select id="grade" name="entry.1203705920" class="form-control" required>
+                        <option value="" selected disabled>اختر صفك الدراسي</option>
+                        <option value="الصف الأول الإعدادي">الصف الأول الإعدادي</option>
+                        <option value="الصف الثاني الإعدادي">الصف الثاني الإعدادي</option>
+                        <option value="الصف الثالث الإعدادي">الصف الثالث الإعدادي</option>
+                        <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
+                        <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
+                        <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
+                    </select>
+                </div>
+                
+                <!-- رقم واتساب -->
+                <div class="form-group">
+                    <label for="whatsapp">
+                        <span class="required">*</span>
+                        رقم هاتف مسجل لدي واتساب
+                        <i class="fab fa-whatsapp"></i>
+                    </label>
+                    <input type="tel" id="whatsapp" name="entry.1125119520" class="form-control" required placeholder="مثال: 201234567890+">
+                </div>
+                
+                <!-- رقم تليجرام -->
+                <div class="form-group">
+                    <label for="telegram">
+                        <span class="required">*</span>
+                        رقم هاتف مسجل لدي تليجرام
+                        <i class="fab fa-telegram"></i>
+                    </label>
+                    <input type="tel" id="telegram" name="entry.364603284" class="form-control" required placeholder="مثال: 201234567890+">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="reset" class="btn btn-reset">
+                        <i class="fas fa-eraser"></i> محو النموذج
+                    </button>
+                    <button type="submit" class="btn pulse">
+                        <i class="fas fa-paper-plane"></i> إرسال التسجيل
+                    </button>
+                </div>
+                
+                <input type="hidden" name="fvv" value="1">
+                <input type="hidden" name="partialResponse" value="[null,null,&quot;3465481795527528641&quot;]">
+                <input type="hidden" name="pageHistory" value="0">
+                <input type="hidden" name="fbzx" value="3465481795527528641">
+            </form>
+            
+            <div class="footer">
+                <p><i class="fas fa-lock"></i> نضمن سرية بياناتك ولن يتم مشاركتها مع أي جهة أخرى</p>
+                <p>© 2023 منصة البدري التعليمية - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('customForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // إظهار رسالة النجاح
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // إرسال البيانات إلى نموذج جوجل
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            }).then(() => {
+                // إخفاء النموذج بعد الإرسال
+                form.style.display = 'none';
+                document.querySelector('.required-note').style.display = 'none';
+                
+                // التمرير إلى رسالة النجاح
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            }).catch(() => {
+                document.getElementById('successMessage').style.display = 'none';
+                alert('حدث خطأ أثناء إرسال النموذج. يرجى المحاولة مرة أخرى.');
+            });
+        });
+    </script>
+</body>
+</html>
